@@ -11,6 +11,17 @@
   </head>
 
   <body>
+    <% if doctor_signed_in? %>
+        <%= link_to 'Sign Out as Doctor', destroy_doctor_session_path, method: :delete %> |
+      <% elsif !patient_signed_in? %>
+        <%= link_to "Sign In as Doctor", new_doctor_session_path %> |
+      <% end %>
+
+      <% if patient_signed_in? %>
+        <%= link_to 'Sign Out as patient', destroy_patient_session_path, method: :delete %> |
+      <% elsif !doctor_signed_in? %>
+        <%= link_to "Sign In as patient", new_patient_session_path %> |
+      <% end %>
     <%= yield %>
   </body>
 </html>
