@@ -1,6 +1,6 @@
 class DoctorsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_doctor, only: %i[ show edit update destroy ]
+  before_action :authenticate_doctor!, except: [:index, :show]
+  load_and_authorize_resource
 
   # GET /doctors
   def index
@@ -13,7 +13,6 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/new
   def new
-    @doctor = Doctor.new
   end
 
   # GET /doctors/1/edit
@@ -22,7 +21,6 @@ class DoctorsController < ApplicationController
 
   # POST /doctors
   def create
-    @doctor = Doctor.new(doctor_params)
 
     respond_to do |format|
       if @doctor.save
@@ -35,6 +33,16 @@ class DoctorsController < ApplicationController
 
   # PATCH/PUT /doctors/1
   def update
+    if doctor_params[:password].blank?
+      doctor_params.delete(:password)
+      doctor_params.delete(:password_confirmation)
+    end
+  
+    successfully_updated = if needs_password?(@doctor, doctor_params)
+                             @doctor.update(doctor_params)
+                           else
+                             @doctor.update_without_password(doctor_params)
+                           end
     respond_to do |format|
       if @doctor.update(doctor_params)
         format.html { redirect_to @doctor, notice: "Doctor was successfully updated." }
@@ -53,13 +61,13 @@ class DoctorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_doctor
-      @doctor = Doctor.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def doctor_params
       params.require(:doctor).permit(:name, :DOB, :city, :resume, :graduated)
+    end
+
+    def needs_password?(_doctor, params)
+      params[:password].present?
     end
 end

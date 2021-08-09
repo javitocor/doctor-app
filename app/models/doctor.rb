@@ -9,7 +9,7 @@ class Doctor < ApplicationRecord
   validates :name, presence: true, length: { maximum: 45, too_long: '45 characters in doctor name is the maximum allowed.'  }
   validates :city, presence: true
   validates :graduated, presence: true
-  validates :resume, , presence: true
+  validates :resume, presence: true
 
   has_many :appointments
 

@@ -1,8 +1,13 @@
-<h1>Welcome to Crisalix!</h1>
-<h2>Making people beautyfull since 2020</h2>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-  eveniet, repellat quae sed hic obcaecati nam exercitationem saepe
-  quod totam dolore explicabo culpa iure deserunt? Dignissimos, fuga,
-  adipisci. Temporibus, aliquid.
-</p>
+<div class="jumbotron mt-5">
+  <div class="container">
+    <h1 class="display-4">Welcome to Crisalix!</h1>
+    <p class="lead">The world's leading tech company in the field of 3D aesthetic simulation</p>
+    <hr class="my-4">
+    <p class="lead">Its unique technology is based on the most recent advances in Artificial Intelligence, Computer Vision and Augmented Reality and it permits the creation of highly accurate 3D reconstructions of human bodies and the simulation of aesthetic procedures on top.
+    </p>
+    <p class="lead">
+      <%= link_to "Be a Doctor", new_doctor_registration_path, class:"btn btn-primary btn-lg text-white", role: "button" %>
+      <%= link_to "Be a Patient", new_patient_registration_path, class:"btn btn-primary btn-lg text-white", role: "button" %>
+    </p>
+  </div>
+</div>

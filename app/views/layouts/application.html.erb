@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Crisalix2</title>
+    <title>Crisalix</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/d4de0f4540.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   </head>
 
   <body>
-    <% if doctor_signed_in? %>
-        <%= link_to 'Sign Out as Doctor', destroy_doctor_session_path, method: :delete %> |
-      <% elsif !patient_signed_in? %>
-        <%= link_to "Sign In as Doctor", new_doctor_session_path %> |
-      <% end %>
+    <div class="container-fluid p-0 intro">
+      <div class="row m-0 intro">
+          <%= render 'layouts/navbar'%>
 
-      <% if patient_signed_in? %>
-        <%= link_to 'Sign Out as patient', destroy_patient_session_path, method: :delete %> |
-      <% elsif !doctor_signed_in? %>
-        <%= link_to "Sign In as patient", new_patient_session_path %> |
-      <% end %>
-    <%= yield %>
+          <div class="container col-md-10 col-sm-8 intro">
+            <div class="row intro">
+              <%= yield %>
+            </div>
+          </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
   </body>
 </html>

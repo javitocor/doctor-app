@@ -1,35 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="container mt-3">
+  <h1>Appointments</h1>
 
-<h1>Appointments</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Starts at</th>
-      <th>Ends at</th>
-      <th>Doctor</th>
-      <th>Patient</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @appointments.each do |appointment| %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= appointment.subject %></td>
-        <td><%= appointment.starts_at %></td>
-        <td><%= appointment.ends_at %></td>
-        <td><%= appointment.doctor_id %></td>
-        <td><%= appointment.patient_id %></td>
-        <td><%= link_to 'Show', appointment %></td>
-        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
-        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% if doctor_signed_in? %>
+        <th>Patient</th>
+      <% end %>
+        <th scope="col">Subject</th>
+        <th scope="col">Starts at</th>
+        <th scope="col">Ends at</th>
+        <th scope="col">Doctor</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @appointments.each do |appointment| %>
+        <tr>
+        <% if doctor_signed_in? %>
+          <td><%= appointment.patient.name %></td>
+        <% end %>
+          <td><%= appointment.subject %></td>
+          <td><%= appointment.starts_at %></td>
+          <td><%= appointment.ends_at %></td>
+          <td><%= appointment.doctor.name %></td>
+          <td><%= link_to 'Show', appointment, class:"btn btn-primary text-white" %></td>
+          <% if patient_signed_in? %>
+            <td><%= link_to 'Edit', edit_appointment_path(appointment), class:"btn btn-primary text-white" %></td>
+          <% end %>
+          <td><%= link_to 'Cancel', appointment, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary text-white" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Appointment', new_appointment_path %>
+  <br>
+
+  <% if patient_signed_in? %>
+    <%= link_to 'New Appointment', new_appointment_path, class:"btn btn-primary btn-lg text-white" %>
+  <% end %>
+</div>

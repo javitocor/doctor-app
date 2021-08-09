@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_patient, only: %i[ show edit update destroy ]
+  before_action :check_user
+  load_and_authorize_resource
 
   # GET /patients
   def index
@@ -13,7 +13,6 @@ class PatientsController < ApplicationController
 
   # GET /patients/new
   def new
-    @patient = Patient.new
   end
 
   # GET /patients/1/edit
@@ -22,7 +21,6 @@ class PatientsController < ApplicationController
 
   # POST /patients
   def create
-    @patient = Patient.new(patient_params)
 
     respond_to do |format|
       if @patient.save
@@ -35,6 +33,16 @@ class PatientsController < ApplicationController
 
   # PATCH/PUT /patients/1
   def update
+    if patient_params[:password].blank?
+      patient_params.delete(:password)
+      patient_params.delete(:password_confirmation)
+    end
+  
+    successfully_updated = if needs_password?(@patient, patient_params)
+                             @patient.update(patient_params)
+                           else
+                             @patient.update_without_password(patient_params)
+                           end
     respond_to do |format|
       if @patient.update(patient_params)
         format.html { redirect_to @patient, notice: "Patient was successfully updated." }
@@ -53,13 +61,21 @@ class PatientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_patient
-      @patient = Patient.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def patient_params
       params.require(:patient).permit(:name, :surname, :medical_history, :DOB, :city)
+    end
+
+    def needs_password?(_patient, params)
+      params[:password].present?
+    end
+
+    def check_user
+      if doctor_signed_in?
+        :authenticate_doctor!
+      elsif patient_signed_in?
+        :authenticate_patient!
+      end
     end
 end

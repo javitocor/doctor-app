@@ -1,29 +1,69 @@
-<p id="notice"><%= notice %></p>
+<section class="container">
+  <% if doctor_signed_in? %>
+    <h1 class="mb-4">Appointment with: <%= @appointment.patient.name %></h1>
+  <% elsif patient_signed_in? %>
+    <h1 class="mb-4">Appointment with: <%= @appointment.doctor.name %></h1>
+  <% end %>
+  <div class="row d-flex justify-content-center">
+    <div class="list-group w-50 mb-3">
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Subject</h5>
+        </div>
+        <p class="mb-1"><%= @appointment.subject %></p>
+        
+      </div>
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Starts at</h5>      
+        </div>
+        <p class="mb-1"><%= @appointment.starts_at %></p>    
+      </div>
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Ends at</h5>      
+        </div>
+        <p class="mb-1"><%= @appointment.ends_at %></p>    
+      </div>
+      <div class="list-group-item list-group-item-action">
+        <% if patient_signed_in? %>
+          <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Doctor</h5>      
+            </div>
+            <p class="mb-1"><%= link_to @appointment.doctor.name, doctor_path(@appointment.doctor) %></p>    
+          </div>
+        <% elsif doctor_signed_in? %>
+          <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Patient</h5>      
+            </div>
+            <p class="mb-1"><%= link_to @appointment.patient.name, patient_path(@appointment.patient) %></p>    
+          </div>
+        <% end %>    
+      </div>
+    </div>
 
-<p>
-  <strong>Subject:</strong>
-  <%= @appointment.subject %>
-</p>
-
-<p>
-  <strong>Starts at:</strong>
-  <%= @appointment.starts_at %>
-</p>
-
-<p>
-  <strong>Ends at:</strong>
-  <%= @appointment.ends_at %>
-</p>
-
-<p>
-  <strong>Doctor:</strong>
-  <%= @appointment.doctor_id %>
-</p>
-
-<p>
-  <strong>Patient:</strong>
-  <%= @appointment.patient_id %>
-</p>
-
-<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
-<%= link_to 'Back', appointments_path %>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <% @appointment.patient_images.each do |patient_image| %>
+          <div class="carousel-item active">
+            <%= image_tag patient_image.url, class:"d-block w-100"%>
+          </div>       
+        <% end %>   
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <div class="mt-4 mb-3 d-flex justify-content-center">
+      <% if patient_signed_in? %>
+        <%= link_to 'Edit', edit_appointment_path(@appointment), class:"btn btn-primary text-white mx-2" %> 
+      <% end %>
+      <%= link_to 'Back', :back, class:"btn btn-primary text-white" %>
+    </div>
+  </div>
+</section>

@@ -1,10 +1,14 @@
 class AppointmentsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_appointment, only: %i[ show edit update destroy ]
+  before_action :check_user
+  load_and_authorize_resource
 
   # GET /appointments
   def index
-    @appointments = Appointment.all
+    if patient_signed_in?
+      @appointments = Appointment.find_in_appointments('Patient', current_patient.id)
+    else
+      @appointments = Appointment.find_in_appointments('Doctor', current_doctor.id)
+    end
   end
 
   # GET /appointments/1
@@ -13,7 +17,6 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
-    @appointment = Appointment.new
   end
 
   # GET /appointments/1/edit
@@ -22,7 +25,7 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
-    @appointment.patient_id = current_user.id
+    @appointment.patient_id = current_patient.id
     @appointment.ends_at = DateTime.parse(params[:appointment][:starts_at]) + 1.hour
 
     respond_to do |format|
@@ -54,13 +57,17 @@ class AppointmentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_appointment
-      @appointment = Appointment.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:subject, :starts_at, :ends_at, :doctor_id, :patient_id)
+      params.require(:appointment).permit(:subject, :starts_at, :ends_at, :doctor_id, :patient_id, {patient_images: []})
+    end
+
+    def check_user
+      if current_doctor
+        :authenticate_doctor!
+      elsif current_patient
+        :authenticate_patient!
+      end
     end
 end

@@ -1,0 +1,29 @@
+<div class="container mt-3">
+  <h1>Search Result:</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">DOB</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @results.each do |doctor| %>
+        <tr>
+          <td><%= doctor.name %></td>
+          <td><%= doctor.email %></td>
+          <td><%= doctor.DOB %></td>
+          <td><%= link_to 'Show', doctor, class:"btn btn-primary text-white" %></td>          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+<%= link_to 'Back', doctors_path, class:"btn btn-primary text-white" %>
+
+</div>

@@ -1,42 +1,46 @@
-<%= form_with(model: appointment) do |form| %>
+<%= form_with(model: appointment, local: true) do |form| %>
   <% if appointment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
 
       <ul>
-        <% appointment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% appointment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :subject %>
-    <%= form.text_field :subject %>
+  <div class="form-outline mb-3">
+    <%= form.text_field :subject, autofocus: true, placeholder: "Subject", class:"form-control form-control-lg" %>                                      
   </div>
 
-  <div class="field">
-    <%= form.label :starts_at %>
-    <%= form.datetime_select :starts_at %>
+  <div class="form-outline mb-3">
+    <%= form.datetime_field :starts_at, autofocus: true, class:"form-control form-control-lg" %>                                      
   </div>
 
-  <div class="field">
-    <%= form.label :ends_at %>
-    <%= form.datetime_select :ends_at %>
+  <div class="form-outline mb-3 form-group">
+    <%= collection_select(:appointment, :doctor_id, Doctor.all, :id, :name, { prompt: "--Select a Doctor--" }, class:"form-select form-select-lg") %>                                    
   </div>
 
-  <div class="field">
-    <%= form.label :doctor_id %>
-    <%= form.text_field :doctor_id %>
-  </div>
+  <p>Add 3 photos so we can create a Crisalix 3d</p>
+  
+  <% appointment.patient_images.each do |patient_images| %>
+    <%= hidden_field :appointments, :patient_images, multiple: true, value: patient_images.identifier %>
+  <% end %>
+  <%= form.file_field :patient_images, multiple: true %>
 
-  <div class="field">
-    <%= form.label :patient_id %>
-    <%= form.text_field :patient_id %>
-  </div>
+  <% appointment.patient_images.each do |patient_images| %>
+    <%= hidden_field :appointments, :patient_images, multiple: true, value: patient_images.identifier %>
+  <% end %>
+  <%= form.file_field :patient_images, multiple: true %>
+
+  <% appointment.patient_images.each do |patient_images| %>
+    <%= hidden_field :appointments, :patient_images, multiple: true, value: patient_images.identifier %>
+  <% end %>
+  <%= form.file_field :patient_images, multiple: true %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Submit', class:"btn btn-primary btn-lg btn-rounded text-white mt-1" %>
   </div>
 <% end %>

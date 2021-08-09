@@ -1,26 +1,39 @@
-<h2>Log in</h2>
+<section class="intro">
+  <div class="mask d-flex align-items-center h-100" style="background-color: #D6D6D6;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="card-body py-0 px-5 text-center">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+              <div class="my-md-3 pb-2">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+                <h1 class="fw-bold mb-0">Log In</h1>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+                <i class="fas fa-user-md fa-2x my-2"></i>
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="form-outline mb-3">
+                    <%= f.email_field :email, autofocus: true, placeholder: "Email", class:"form-control form-control-lg" %>
+                                      
+                  </div>
+
+                  <div class="form-outline mb-3">
+                    <%= f.password_field :password, placeholder: "Password", class:"form-control form-control-lg" %>
+                    
+                  </div>
+                  <%= f.submit "Log in", class:"btn btn-primary btn-lg btn-rounded text-white px-5" %>
+                  
+                <% end %>
+              </div>
+
+              <div class="py-4">
+                <p class="mb-0">Don't have an account? <%= render "devise/shared/links", class:"text-body fw-bold" %></p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "doctors/shared/links" %>
+</section>

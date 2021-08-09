@@ -1,29 +1,51 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @doctor.name %>
-</p>
-
-<p>
-  <strong>Dob:</strong>
-  <%= @doctor.DOB %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @doctor.city %>
-</p>
-
-<p>
-  <strong>Resume:</strong>
-  <%= @doctor.resume %>
-</p>
-
-<p>
-  <strong>Graduated:</strong>
-  <%= @doctor.graduated %>
-</p>
-
-<%= link_to 'Edit', edit_doctor_path(@doctor) %> |
-<%= link_to 'Back', doctors_path %>
+<section class="container">
+  <h1 class="mb-4">Doctor: <%= @doctor.name %></h1>
+  <div class="row d-flex justify-content-center">
+    <div class="list-group w-50 mb-3">      
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Name</h5>
+        </div>
+        <p class="mb-1"><%= @doctor.name %></p>        
+      </div>
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">DOB</h5>      
+        </div>
+        <p class="mb-1"><%= @doctor.DOB %></p>    
+      </div>
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Email</h5>      
+        </div>
+        <p class="mb-1"><%= @doctor.email %></p>    
+      </div>
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Graduated</h5>      
+          </div>
+          <p class="mb-1"><%= @doctor.graduated %></p>    
+        </div>
+        
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">City</h5>      
+          </div>
+          <p class="mb-1"><%= @doctor.city %></p>    
+        </div>  
+      </div>
+      
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Resume</h5>      
+          </div>
+          <p class="mb-1"><%= @doctor.resume %></p>    
+        </div>  
+      </div>  
+      </div>         
+    </div>   
+    <div class="mt-4 mb-3 d-flex justify-content-center">
+      <%= link_to 'Back', :back, class:"btn btn-primary text-white" %>
+    </div>
+  </div>
+</section>
