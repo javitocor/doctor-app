@@ -82,7 +82,7 @@ Populate Database with:
 ``` bash
    rails db:seed
 ```
-Access the page bytyping in yourweb browser
+Access the page by typing in your web browser
 
 ``` bash
    http://localhost:3000/
