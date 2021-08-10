@@ -24,7 +24,7 @@ Things you may want to c<!--
 [![Issues][issues-shield]][issues-url] 
 ![Hireable](https://cdn.rawgit.com/hiendv/hireable/master/styles/default/yes.svg) 
 
-# Plastic Surgery Appointments App
+# Doctor Appointments App
 
 >  A webapp that allows the doctor/patient sing up or log in, the patient can book appointments with the doctor. The app is based in 3 models, Doctor, Patient and Appointments. Only a Patient user can create appointments wit the Doctor users. To book an appointment the patient must send 3 photos to the Doctor to create a 3d image. Built with Ruby on Rails.
 
@@ -54,14 +54,14 @@ Additional description about the project and its features.
 
 ### Usage
 To have this app on your pc, you need to:
-* [download](https://github.com/javitocor/your-snooker-coach/archive/development.zip) or clone this repo:
+* [download](https://github.com/javitocor/doctor-app/archive/development.zip) or clone this repo:
   - Clone with SSH:
   ```
-    git@github.com:javitocor/your-snooker-coach.git
+    git@github.com:javitocor/doctor-app.git
   ```
   - Clone with HTTPS
   ```
-    https://github.com/javitocor/your-snooker-coach.git
+    https://github.com/javitocor/doctor-app.git
   ```
 
 * In the project directory, you can run:
@@ -105,7 +105,7 @@ Access the page bytyping in yourweb browser
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/javitocor/your-snooker-coach/issues).
+Feel free to check the [issues page](https://github.com/javitocor/doctor-app/issues).
 
 ## Show your support
 
@@ -121,13 +121,13 @@ This project is [MIT](lic.url) licensed.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/javitocor/your-snooker-coach.svg?style=flat-square
-[contributors-url]: https://github.com/javitocor/your-snooker-coach/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/javitocor/your-snooker-coach.svg?style=flat-square
-[forks-url]: https://github.com/javitocor/your-snooker-coach/network/members
-[stars-shield]: https://img.shields.io/github/stars/javitocor/your-snooker-coach.svg?style=flat-square
-[stars-url]: https://github.com/javitocor/your-snooker-coach/stargazers
-[issues-shield]: https://img.shields.io/github/issues/javitocor/your-snooker-coach.svg?style=flat-square
-[issues-url]: https://github.com/javitocor/your-snooker-coach/issuesover:
+[contributors-shield]: https://img.shields.io/github/contributors/javitocor/doctor-app.svg?style=flat-square
+[contributors-url]: https://github.com/javitocor/doctor-app/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/javitocor/doctor-app.svg?style=flat-square
+[forks-url]: https://github.com/javitocor/doctor-app/network/members
+[stars-shield]: https://img.shields.io/github/stars/javitocor/doctor-app.svg?style=flat-square
+[stars-url]: https://github.com/javitocor/doctor-app/stargazers
+[issues-shield]: https://img.shields.io/github/issues/javitocor/doctor-app.svg?style=flat-square
+[issues-url]: https://github.com/javitocor/doctor-app/issuesover:
 
 
