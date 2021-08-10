@@ -26,7 +26,7 @@ Things you may want to c<!--
 
 # Doctor Appointments App
 
->  A webapp that allows the doctor/patient sing up or log in, the patient can book appointments with the doctor. The app is based in 3 models, Doctor, Patient and Appointments. Only a Patient user can create appointments wit the Doctor users. To book an appointment the patient must send 3 photos to the Doctor to create a 3d image. Built with Ruby on Rails.
+>  A web app that allows the doctor/patient sign up or log in, the patient can book appointments with the doctor. The app is based in 3 models, Doctor, Patient and Appointments. Only a Patient user can create appointments wit the Doctor users. To book an appointment the patient must send 3 photos to the Doctor to create a 3d image. Built with Ruby on Rails.
 
 Additional description about the project and its features.
 
