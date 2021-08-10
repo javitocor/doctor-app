@@ -54,7 +54,7 @@ Additional description about the project and its features.
 
 ### Usage
 To have this app on your pc, you need to:
-* [download](https://github.com/javitocor/doctor-app/archive/development.zip) or clone this repo:
+* [download](https://github.com/javitocor/doctor-app/archive/refs/heads/master.zip) or clone this repo:
   - Clone with SSH:
   ```
     git@github.com:javitocor/doctor-app.git
